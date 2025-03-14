@@ -1,0 +1,10 @@
+title: blog
+github_username:  bread-man88
+remote_theme: riggraz/no-style-please
+# style: light
+# theme: minima
+# paginate: 5
+# paginate_path: "/page:num"
+# plugins:
+#   - jekyll-feed
+#   - jekyll-paginate
