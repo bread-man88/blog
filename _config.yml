@@ -7,3 +7,4 @@ plugins:
 
 theme_config:
   date_format: "%Y-%m-%d"
+  back_home_text: ".."
