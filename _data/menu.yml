@@ -1,4 +1,5 @@
 entries:
   - title: quotes
-    post_list: true
+    post_list:
       category: quote
+
