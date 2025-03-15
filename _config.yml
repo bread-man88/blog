@@ -1,10 +1,9 @@
 title: blog
 github_username: bread-man88
-remote_theme: riggraz/no-style-please
+markdown: kramdown
 
-plugins:
-  - jekyll-remote-theme
+header_pages:
+  - index.md
 
-theme_config:
-  date_format: "%Y-%m-%d"
-  back_home_text: ".."
+style: light
+# listen_for_clients_preferred_style: true
