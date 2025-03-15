@@ -1,9 +1,13 @@
-title: blog
+title: jk's blog
 github_username: bread-man88
 markdown: kramdown
 
 header_pages:
   - index.md
 
-style: light
-# listen_for_clients_preferred_style: true
+home_categories:
+  - programming
+  - quotes
+
+# style: light
+listen_for_clients_preferred_style: true
