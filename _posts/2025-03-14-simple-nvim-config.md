@@ -3,7 +3,7 @@ title: "Modern Neovim in 50 lines"
 layout: post
 category: programming
 date: 2025-03-14
-published: false
+<!--published: false-->
 ---
 
 Neovim configs have a tendency to go off the rails. I think some amount of this has existed for a long time with Vim, but with Neovim it feels particularly exaggerated. Maybe it's the built-in LSP, or how open the core team is to new features. Maybe it's that the newest recruits are jumping ship from IDEs with features they don't want to lose out on. Whatever it is, the user base seems to be consistently wanting more and more powerful plugins. Some of these Neovim plugins are a special breed of bloated compared to some of the Vim counterparts. Could be due in part to the advent of the Neovim floating window, or that Lua is generally considered a nicer language to write. All I know is the minute configs start requiring nested file structures and lazy-loaded plugins it feels like we've strayed pretty far from the minimalist philosophy that got us here.
