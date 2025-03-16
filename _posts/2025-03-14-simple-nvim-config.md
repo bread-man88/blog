@@ -1,5 +1,5 @@
 ---
-title: "Modern Neovim in 50 lines"
+title: "Modern Neovim in <50 lines"
 layout: post
 category: programming
 date: 2025-03-14
@@ -13,10 +13,9 @@ One side-effect of using more plugins is with each one you add, you get further 
 I think the right amount of minimalism is not taking it so far that you're actually sacrificing productivity. To me there are a few modern IDE features that I think are huge enhancements to the development experience:
 
 - Inline linting
-- LSP completions
-- Formatting
+- LSP completions & jump to definition
+- Auto-formatting
 - Fuzzy searching (both for file names and file contents)
-- Interactive git blaming (re-blaming at parent commit for any line)
 
 ...and maybe a couple of more QOL improvements. I'm going to walk through how you can get each of these with the minimal possible config. I think we can do it in less than 50 lines. I'll use Python as the language for my example setup, and macOS for my operating system, though any *nix system will use a very similar setup. Let's get to it.
 
@@ -101,4 +100,104 @@ Surprise, this is already done! Neovim has a built in completion type called "om
 ## Formatting
 
 For formatting we'll use a plugin called Conform. Formatting works very similarly to the LSP in that you just need your formatter in your `$PATH` and Conform will pick it up.
+
+First, of course, add `stevearc/conform.nvim` to your paq setup. I won't run you through that one again.
+
+Next we need to setup Conform. We can use the snippet below at the bottom of our `init.lua` file.
+
+```lua
+require("conform").setup({
+	formatters_by_ft = {
+		python = { "ruff_organize_imports", "ruff_format" },
+	},
+	format_after_save = {},
+})
+```
+
+Take a look at all the valid formatting commands [here](https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters). Luckily, ruff has a built-in formatter, so we don't need any extra packages. You'll notice two separate ruff commands -- one organizes imports and one runs the ruff formatter. It's also set up to automatically format on save. Now run a PaqInstall and on to the next...
+
+## Fuzzy Finding
+
+Fuzzy searching is the most efficient way to jump between files in Neovim. Instead of navigating through a traditional file tree, you'll find it's usually faster to search your working directory for the file name. The fuzzy finder will live update as you type, and usually within a few keystrokes you'll get to the file you're looking for. The plugin we'll use for this not only allows search file names, but also the contents of files.
+
+We'll use a plugin called fzf-vim for this one. To start, we need to add these two packages to paq: `junegunn/fzf` and `junegunn/fzf.vim`, in that order.
+
+Fzf is actually a command line application that neovim interfaces with from terminal mode. So we will need a few applications installed to our system:
+
+```
+$ brew install fzf # the main fzf app
+$ brew install ripgrep # to allow us to search the contents of files
+$ brew install bat # for syntax highlighting in fzf
+```
+
+Fzf is a tool you will use enough that it's worth having a keymap for the main commands. Put the following right underneath your paq setup:
+
+```lua
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>f", ":Files!<cr>")
+vim.keymap.set("n", "<leader>g", ":RG!<cr>")
+```
+
+In vim, "leader" is a user defined key that is commonly used as a prefix for custom keymaps. It's there so we have a way to easily set keymaps without worrying about overwriting the default ones. We've set it to the space bar here, which is a common leader key. Now, <space>-f will allow us to fuzzy search file names, and <space>-g searches file contents!
+
+## Bringing it all Together
+
+You've made it to the end. Let's take a look at our init.lua file after all this:
+
+```lua
+require("paq")({
+    "savq/paq-nvim",
+    "neovim/nvim-lspconfig",
+    "stevearc/conform.nvim",
+    "junegunn/fzf",
+    "junegunn/fzf.vim"
+})
+
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>f", ":Files!<cr>")
+vim.keymap.set("n", "<leader>g", ":RG!<cr>")
+
+local lspconfig = require("lspconfig")
+local lsps = { "pyright", "ruff" }
+for _, lsp in pairs(lsps) do
+    local setup = {}
+    if lsp == "pyright" then
+        setup = {
+            settings = {
+                [lsp] = {
+                    analysis = {
+                        diagnosticMode = "workspace",
+                        typeCheckingMode = "off"
+                    }
+                }
+            }
+        }
+    end
+    lspconfig[lsp].setup(setup)
+end
+
+require("conform").setup({
+	formatters_by_ft = {
+		python = { "ruff_organize_imports", "ruff_format" },
+	},
+	format_after_save = {},
+})
+```
+
+Less than 50 lines, just like we said. That's pretty good. Don't forget the system packages we installed! Below is every command we ran in the terminal:
+
+```
+$ git clone --depth=1 https://github.com/savq/paq-nvim.git \
+    "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+$ mkdir -p ~/.config/nvim
+$ brew install pyright
+$ brew install ruff
+$ brew install fzf
+$ brew install ripgrep
+$ brew install bat
+```
+
+## This is Not the End
+
+I am under no illusion that after this you won't touch your config again. My personal config is ~100 lines where I have some additional keymaps set up, a few of the default vim options changed and a couple more plugins installed. The point here is just to show how powerful Neovim can be out-of-the-box. This is a very functional setup that you can easily build on. It doesn't require 15 files and 40 plugins to set up a great development environment for Neovim. It's already there for you!
 
