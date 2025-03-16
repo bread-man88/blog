@@ -6,7 +6,7 @@ date: 2025-03-14
 <!--published: false-->
 ---
 
-Neovim configs have a tendency to go off the rails. I think some amount of this has existed for a long time with Vim, but with Neovim it feels particularly exaggerated. You could speculate on a lot of reasons for this, but I think at this point it's become a part of the culture. To me it seems we've strayed pretty far from the minimalist philosophy of Vim once configs start requiring nested file structures and lazy-loaded plugins and whatever else is getting cooked up lately.
+Neovim configs have a tendency to go off the rails. I think some amount of this has existed for a long time with Vim, but with Neovim it feels particularly exaggerated. At this point the giant bloated configs have become a part of the Neovim culture. To me it seems we've strayed pretty far from the minimalist philosophy of Vim once configs start requiring nested file structures and lazy-loaded plugins and whatever else is getting cooked up lately.
 
 One side-effect of using more plugins is with each one you add, you get further abstracted away from using the base tool. When I started out on nvim I was pretty plugin happy, and there were things I would download plugins for that I didn't even realize you could do natively. There's something powerful about having command of as much of the base editor as possible. You can take those skills with you to pretty much any machine, and even if you don't have your perfect config set up you'll still feel like you know your way around.
 
@@ -44,7 +44,7 @@ require("paq")({
 })
 ```
 
-We have now a package manager. If you close and reopen Neovim and you should have a variety of `:Paq*` commands available to you. All of your future packages will go inside that initial setup call, which should stay at the top of the file. The format for adding packages "\<GitHub Org>/\<GitHub Repo>". Using `:PaqList` will show you what packages you have installed, and `:PaqSync` will both clean packages that have been removed and install new ones.
+We have now a package manager. If you close and reopen Neovim and you should have a variety of `:Paq*` commands available to you. All of your future packages will go inside that initial setup call, which should stay at the top of the file. The format for adding packages is "\<GitHub Org>/\<GitHub Repo>". Using `:PaqList` will show you what packages you have installed, and `:PaqSync` will both clean packages that have been removed and install new ones.
 
 ## Linting & LSP features
 
@@ -166,7 +166,6 @@ Less than 50 lines, just like we said. Half that actually! That's pretty good. D
 ```
 $ git clone --depth=1 https://github.com/savq/paq-nvim.git \
     "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
-$ mkdir -p ~/.config/nvim
 $ brew install pyright ruff
 $ brew install fzf ripgrep bat
 ```
@@ -185,7 +184,7 @@ We also didn't cover some of the default Neovim options that can be changed to i
 
 ## This is not the end
 
-I am under no illusion that this is the perfect config, or that your workflow couldn't be improved by a few extra plugins. My personal config is ~100 lines where I have some additional keymaps set up, a few of the default vim options changed and a couple more plugins installed. The point here is to show how powerful Neovim can be out of the box. This is a very functional setup that you can be easily build upon. It doesn't require 15 files and 40 plugins to set up a great dev environment -- the base editor is pretty damn good.
+I am under no illusion that this is the perfect config, or that your workflow couldn't be improved by a few extra plugins. My personal config is ~100 lines where I have some additional keymaps set up, a few of the default vim options changed and a couple more plugins installed. The point here is to show how powerful Neovim can be out of the box. This is a very functional setup that you can easily build upon. It doesn't require 15 files and 40 plugins to set up a great dev environment -- the base editor is pretty damn good.
 
 Happy vimming!
 
