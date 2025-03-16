@@ -1,9 +1,8 @@
 ---
-title: "Modern Neovim in <50 lines"
+title: "Neovim in <50 lines"
 layout: post
 category: programming
 date: 2025-03-14
-<!--published: false-->
 ---
 
 Neovim configs have a tendency to go off the rails. I think some amount of this has existed for a long time with Vim, but with Neovim it feels particularly exaggerated. At this point the giant bloated configs have become a part of the Neovim culture. To me it seems we've strayed pretty far from the minimalist philosophy of Vim once configs start requiring nested file structures and lazy-loaded plugins and whatever else is getting cooked up lately.
@@ -21,7 +20,7 @@ Obviously the list is up for debate, but I feel good about these as a core set o
 
 ## Getting a package manager
 
-This is a prerequisite for our setup. Neovim does have a built in packages system that you could explore with `:h packages` if you wanted to go that route. What I don't like about this system is the packages you're using aren't specified anywhere in your configs. Instead, any plugins end up in your data directory only. This makes package managerment bit harder with version control, so we'll go with a 3rd party option.
+This is a prerequisite for our setup. Neovim does have a built in packages system that you could explore with `:h packages` if you wanted to go that route. What I don't like about this system is the packages you're using aren't specified anywhere in your configs. Instead, any plugins end up in your data directory only. This makes package management bit harder with version control, so we'll go with a 3rd party option.
 
 The simplest package manager I've found is [paq-nvim](https://github.com/savq/paq-nvim). Install it like so from the command line with one command:
 
@@ -44,7 +43,7 @@ require("paq")({
 })
 ```
 
-We have now a package manager. If you close and reopen Neovim and you should have a variety of `:Paq*` commands available to you. All of your future packages will go inside that initial setup call, which should stay at the top of the file. The format for adding packages is "\<GitHub Org>/\<GitHub Repo>". Using `:PaqList` will show you what packages you have installed, and `:PaqSync` will both clean packages that have been removed and install new ones.
+We have now a package manager. If you close and reopen Neovim and you should have a variety of `:Paq*` commands available to you. All of your future packages will go inside that initial setup call, which should stay at the top of the file. The format for adding packages is `<GitHub Org>/<GitHub Repo>`. Using `:PaqList` will show you what packages you have installed, and `:PaqSync` will both clean packages that have been removed and install new ones.
 
 ## Linting & LSP features
 
@@ -198,7 +197,7 @@ $ brew install fzf ripgrep bat
 
 If running only 5 plugins doesn't satiate you, there's a few more great ones I can suggest:
 
-- **tpope/vim-surround**: A handy plugin for surround sections of code with brackets and quotations. This one is so widely used it should debatably be in Neovim core.
+- **tpope/vim-surround**: A handy plugin for surrounding sections of code with brackets and quotations. This one is so widely used it should debatably be in Neovim core.
 - **unblevable/quick-scope**: A small plugin that highlights unique characters in words on the current line making F/f/T/t horizontal navigation much easier.
 - **tpope/vim-fugitive**: This is an incredible plugin for integrating git into your Vim editing. The main feature I use from it is the interactive blames, where for any line of code I can reblame at the parent commit and see when changes happened.
 - **mbbill/undotree**: Vim has a powerful concept of the undo tree built in which lets you navgiate through the history of undos of any file. This plugin gives a nice UI to interface with that feature which is difficult to navigate on its own.
