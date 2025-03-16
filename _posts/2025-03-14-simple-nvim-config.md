@@ -115,7 +115,7 @@ Fzf-vim interfaces with fzf in the terminal via Neovim terminal mode. To make th
 
 ```
 $ brew install fzf # the main fzf app
-$ brew install ripgrep # to allow us to search the contents of files
+$ brew install ripgrep # for searching the contents of files
 $ brew install bat # for syntax highlighting in fzf
 ```
 
@@ -127,7 +127,25 @@ vim.keymap.set("n", "<leader>f", ":Files!<cr>")
 vim.keymap.set("n", "<leader>g", ":RG!<cr>")
 ```
 
-In Vim, "leader" is a user defined key that is commonly used as a prefix for custom keymaps. It's there so we have a way to easily set keymaps without worrying about overwriting the many default ones Vim comes with. We've set it to the space bar here, which is a common leader key. Now <space>-f will allow us to fuzzy search file names, and <space>-g will search file contents!
+In Vim, "leader" is a user defined key that is commonly used as a prefix for custom keymaps. It's there so we have a way to easily set keymaps without worrying about overwriting the many default ones Vim comes with. We've set it to the space bar here, which is a common leader key. Now `<space>f` will allow us to fuzzy search file names, and `<space>g` will search file contents!
+
+## A few options
+
+That's all our plugins. There's just a couple of key options worth changing and then we're off to the races. Add these right below your paq setup:
+
+```lua
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.smartindent = true
+```
+
+Here we're doing a few things:
+
+- Setting Neovim's tabs and indents to 4 spaces, overriding the somewhat antiquated default of 8 spaces
+- Adding relative numbers (very useful for jumps), but still have regular line numbers turned on if relative numbers are switched off
+- Allow Neovim to intelligently indent newlines based on context
 
 ## Bringing it all together
 
@@ -141,6 +159,12 @@ require("paq")({
     "junegunn/fzf",
     "junegunn/fzf.vim"
 })
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.smartindent = true
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>f", ":Files!<cr>")
@@ -161,7 +185,7 @@ require("conform").setup({
 })
 ```
 
-Less than 50 lines, just like we said. Half that actually! That's pretty good. Don't forget the system packages we installed! Below is every command we ran in the terminal:
+Less than 50 lines, just like we said. About half that actually! That's pretty good. Don't forget the system packages we installed! Below is every command we ran in the terminal:
 
 ```
 $ git clone --depth=1 https://github.com/savq/paq-nvim.git \
@@ -179,8 +203,6 @@ If running only 5 plugins doesn't satiate you, there's a few more great ones I c
 - **tpope/vim-fugitive**: This is an incredible plugin for integrating git into your Vim editing. The main feature I use from it is the interactive blames, where for any line of code I can reblame at the parent commit and see when changes happened.
 - **mbbill/undotree**: Vim has a powerful concept of the undo tree built in which lets you navgiate through the history of undos of any file. This plugin gives a nice UI to interface with that feature which is difficult to navigate on its own.
 - **folke/which-key.nvim**: This plugin pops a handy floating window at the bottom of the screen that shows the currently valid keymaps. It will update as you press keys in sequence. I learned a ton about Neovim through using this initially.
-
-We also didn't cover some of the default Neovim options that can be changed to improve the experience, but we'll leave that for another post.
 
 ## This is not the end
 
