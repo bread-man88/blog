@@ -12,6 +12,6 @@ Similar experiments showed that Toronto residents would pay little more to clean
 
 An alternative hypothesis is “purchase of moral satisfaction.” People spend enough money to create a warm glow in themselves, a sense of having done their duty. The level of spending needed to purchase a warm glow depends on personality and financial situation, but it certainly has nothing to do with the number of birds.
 
-// Eliezer Yudkowsky
-// 13 May 2007
-// [LessWrong: Scope Insensitivity](https://www.lesswrong.com/posts/2ftJ38y9SRBCBsCzy/scope-insensitivity)
+\# Eliezer Yudkowsky
+\# 13 May 2007
+\# [LessWrong: Scope Insensitivity](https://www.lesswrong.com/posts/2ftJ38y9SRBCBsCzy/scope-insensitivity)

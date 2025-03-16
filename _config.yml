@@ -3,9 +3,10 @@ github_username: bread-man88
 markdown: kramdown
 
 header_pages:
-  - index.md
+  - index.html
+  - archive.html
 
-home_categories:
+archive_categories:
   - programming
   - quotes
 

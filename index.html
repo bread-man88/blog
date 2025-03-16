@@ -6,11 +6,12 @@ title: Home
 <div class="home">
   <div class="post-list">
 
-    {% for post in site.posts limit:5%}
+    {% assign programming_posts = site.posts | where: "category","programming" %}
+    {% for post in programming_posts limit:5 %}
 
     <article class="post_card post">
       <header class="post_header">
-        <h2 class="post_title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title}}</a></h2>
+        <h2 class="post_title"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></h2>
         <time class="post_date">{{ post.date | date: "%d %B %Y, %A" }}</time>
       </header>
       <div class="post_excerpt">
@@ -20,18 +21,18 @@ title: Home
           {% else %}
           {{ post.excerpt }}
           {% endif %} 
-          <a class="read-more" href="{{ post.url | prepend: site.baseurl }}"> »  </a>
+          <a class="read-more" href="{{ post.url | relative_url }}"> »  </a>
         </p> 
       </div>
       <footer class="post_meta">
 
 
-        {% if post.location %}
-        <span class="author-location">
-          <div data-icon="ei-location"></div>
-          <a href=https://www.google.com/maps/place/{{post.location}}">{{ post.location }}</a>
-        </span>
-        {% endif %}
+        <!--{% if post.location %}-->
+        <!--<span class="author-location">-->
+        <!--  <div data-icon="ei-location"></div>-->
+        <!--  <a href=https://www.google.com/maps/place/{{post.location}}">{{ post.location }}</a>-->
+        <!--</span>-->
+        <!--{% endif %}-->
         <!--
         {% for category in post.categories %}
         <a href="{{"/category/" | append: category | prepend: site.baseurl }}">
@@ -57,6 +58,6 @@ title: Home
     </article>
     {% endfor %}
 
-    <div class="pagination older-post"><a href="./archive"><data data-icon="ei-arrow-right"></data> Archive  </a></div>
+    <div class="pagination older-post"><a href="./archive"><data data-icon="ei-arrow-right"></data> archive  </a></div>
   </div>
 </div>

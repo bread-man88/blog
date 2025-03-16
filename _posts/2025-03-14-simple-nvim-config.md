@@ -26,15 +26,15 @@ This is a prerequisite to the reset of our setup. Neovim does have a built in pa
 
 The simplest package manager I've found is [paq-nvim](https://github.com/savq/paq-nvim). Install it like so:
 
-```bash
-git clone --depth=1 https://github.com/savq/paq-nvim.git \
+```
+$ git clone --depth=1 https://github.com/savq/paq-nvim.git \
     "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 ```
 
 Then we just need to make sure we have a neovim config folder with
 
-```bash
-mkdir -p ~/.config/nvim
+```
+$ mkdir -p ~/.config/nvim
 ```
 
 Then create a file called `init.lua` in that directory and put the following lines at the top:
@@ -87,9 +87,9 @@ All we're doing here is defining the LSPs we want to look for, and then setting 
 
 To be clear here, nvim-lspconfig does *not install the LSPs for you*. You need to do that yourself. This part is heavily dependent on what LSPs & linters you're using, but most I've used have been quite simple to install. For pyright & ruff, there are a few ways you can handle this. The simplest way would just be to run:
 
-```bash
-brew install pyright
-brew install ruff
+```
+$ brew install pyright
+$ brew install ruff
 ```
 
 ...and the servers should be automatically added to your $PATH and detected by Neovim. If you have Node installed on your system already I prefer to install pyright with `npm install -g pyright`. The brew install will install node as a dependency which was overriding the default node version I had set with `nvm`. For ruff, I prefer to install this into the venv of the specific Python project I'm working on, but a global install works too. If you install into a venv, you just have to make sure the virtual environment is activated before you open Neovim.
@@ -99,4 +99,6 @@ brew install ruff
 Surprise, this is already done! Neovim has a built in completion type called "omni completion" that the LSP will hook into by default. You can read about it at `:h compl-omni`. When in insert mode, you can trigger it with `<C-X><C-O>`. To see the full list of completions available with `<C-X>`, check out `:h ins-completion`. The Neovim docs even give you a way you could upgrade this to autocomplete as you type, which you can see at `:h compl-autocomplete`.
 
 ## Formatting
+
+For formatting we'll use a plugin called Conform. Formatting works very similarly to the LSP in that you just need your formatter in your `$PATH` and Conform will pick it up.
 
