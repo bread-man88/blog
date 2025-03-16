@@ -75,8 +75,7 @@ All we're doing here is defining the LSPs we want to look for, and then setting 
 To be clear here, nvim-lspconfig *does not install the LSPs for you*. You need to do that yourself. This part is heavily dependent on what LSPs & linters you're using, but most I've used have been quite simple to install. For pyright & ruff, there are a few ways you can handle this. The simplest way would be to run:
 
 ```
-$ brew install pyright
-$ brew install ruff
+$ brew install pyright ruff
 ```
 
 ...and the servers should be automatically be added to your $PATH and detected by Neovim. If you have Node installed on your system already I prefer to install pyright with `npm install -g pyright`. The brew install will install node as a dependency, which can override the default node version that is already set with `nvm`. For ruff, I prefer to install into the venv of the specific Python project I'm working on, but a global install works too. If you install into a venv, you just have to make sure the virtual environment is activated before you open Neovim so Neovim can find it.
@@ -168,11 +167,8 @@ Less than 50 lines, just like we said. Half that actually! That's pretty good. D
 $ git clone --depth=1 https://github.com/savq/paq-nvim.git \
     "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
 $ mkdir -p ~/.config/nvim
-$ brew install pyright
-$ brew install ruff
-$ brew install fzf
-$ brew install ripgrep
-$ brew install bat
+$ brew install pyright ruff
+$ brew install fzf ripgrep bat
 ```
 
 ## Just a few more plugins
