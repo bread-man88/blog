@@ -13,8 +13,7 @@ title: Archive
     <div class="category-name">
       <h2>{{ category | downcase }}</h2>
     </div>
-    {% assign sorted_posts = site.posts | sort: 'date' %}
-    {% for post in sorted_posts %}
+    {% for post in site.posts %}
     {%if post.categories contains category%}
 
     <div class="post_title">
